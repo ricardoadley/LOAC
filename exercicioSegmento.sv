@@ -37,6 +37,8 @@ module top(input  logic clk_2,
   logic y;
   logic z;
   logic [segmentos-1:0] controlador ;
+  logic [3:0] notas; 
+	logic opcao;
 always_comb begin
 	w <= SWI[0];
     	x <= SWI[1];
@@ -94,17 +96,9 @@ always_comb begin
         41: SEG[segmentos-1:0] <= 7'b1100011; // º 
 	default: SEG[segmentos-1:0] <= 7'b1000000;  
     endcase
-  end
-  
-    //Notas	
-	logic [3:0] notas; 
-	logic opcao;
-	
-	always_comb opcao <= SWI[7];
-	
-	always_comb begin
-	notas <= SWI[3:0];
-	if(opcao)
+    opcao <= SWI[7];
+    notas <= SWI[3:0];
+    if(opcao)
 	case(notas[3:0])
 	//mostra situacao P,A,F
 		0: SEG[segmentos-1:0]<=7'b1110011;
@@ -134,6 +128,6 @@ always_comb begin
 		9: SEG[segmentos-1:0] <= 7'b1101111;
 		default: SEG[segmentos-1:0] <= 7'b1000000; 
         endcase
-        end
-
+  end
+  
 endmodule
