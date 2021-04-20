@@ -36,18 +36,18 @@ module top(input  logic clk_2,
 
   parameter segmentos = 7;
   parameter entradas = 6;
-  logic w;
-  logic x;
-  logic y;
-  logic z;
-  logic a;
-  logic b;
-  logic [entradas-1:0] controlador;
-  logic opcao;
+   logic w;
+   logic x;
+   logic y;
+   logic z;
+   logic a;
+   logic b;
+   logic [entradas-1:0] controlador;
+   logic opcao;
   
   always_comb begin
 
-	w <= SWI[0];
+	  w <= SWI[0];
     x <= SWI[1];
     y <= SWI[2];
     z <= SWI[3];
@@ -68,6 +68,7 @@ module top(input  logic clk_2,
 			7: SEG[segmentos-1:0] <= 7'b1110111;
 			8: SEG[segmentos-1:0] <= 7'b1110111;
 			9: SEG[segmentos-1:0] <= 7'b1110111;
+      	default: SEG[segmentos-1:0] <= 7'b1000000; 
 		endcase
 	else 
 		//Exibicao em hexadecimal
